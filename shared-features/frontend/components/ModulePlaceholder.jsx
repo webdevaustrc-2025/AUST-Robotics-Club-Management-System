@@ -1,11 +1,11 @@
+import { Link } from 'react-router-dom'
 import { Compass } from 'lucide-react'
 import Badge from './Badge.jsx'
 import Reveal from './Reveal.jsx'
 
 /**
- * Module-neutral "foundation ready" scaffold page.
- * Event and Administration each supply their own copy and feature list;
- * no business logic lives here.
+ * Module-neutral scaffold page.
+ * Event and Administration each supply their own copy and feature list.
  */
 function ModulePlaceholder({ eyebrow, title, lead, status, features = [], sourcePath, handover }) {
   return (
@@ -28,32 +28,47 @@ function ModulePlaceholder({ eyebrow, title, lead, status, features = [], source
       </header>
 
       <section className="mt-10">
-        <h2 className="mb-2 text-xl">Planned capabilities</h2>
+        <h2 className="mb-2 text-xl">Capabilities</h2>
         <p className="mb-6 text-sm text-subtle">
-          Visual placeholders only — no functionality is implemented at this stage.
+          Select an active feature card to open its workspace.
         </p>
 
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {features.map((feature, index) => (
-            <Reveal
-              as="li"
-              key={feature.name}
-              delay={index * 40}
-              className="flex flex-col gap-3 rounded-md border border-edge-subtle bg-surface-1 p-5 hover:border-edge hover:bg-surface-2"
-            >
-              <span
-                className="grid size-10 place-items-center rounded-sm bg-brand-500/10 text-brand-400"
-                aria-hidden="true"
+          {features.map((feature, index) => {
+            const Component = feature.path ? Link : 'div'
+            const linkProps = feature.path ? { to: feature.path } : {}
+
+            return (
+              <Reveal
+                as="li"
+                key={feature.name}
+                delay={index * 40}
               >
-                <feature.icon size={20} strokeWidth={1.6} />
-              </span>
-              <h3 className="text-[1.0625rem]">{feature.name}</h3>
-              <p className="text-sm text-subtle">{feature.hint}</p>
-              <span className="mt-auto border-t border-edge-subtle pt-3 font-mono text-xs uppercase tracking-[0.1em] text-faint">
-                Not implemented
-              </span>
-            </Reveal>
-          ))}
+                <Component
+                  {...linkProps}
+                  className="flex h-full flex-col gap-3 rounded-md border border-edge-subtle bg-surface-1 p-5 hover:border-edge hover:bg-surface-2 transition-colors group"
+                >
+                  <span
+                    className="grid size-10 place-items-center rounded-sm bg-brand-500/10 text-brand-400 group-hover:bg-brand-500/20 transition-colors"
+                    aria-hidden="true"
+                  >
+                    <feature.icon size={20} strokeWidth={1.6} />
+                  </span>
+                  <h3 className="text-[1.0625rem] group-hover:text-brand-300 transition-colors">{feature.name}</h3>
+                  <p className="text-sm text-subtle">{feature.hint}</p>
+                  <span className="mt-auto border-t border-edge-subtle pt-3 font-mono text-xs uppercase tracking-[0.1em] text-faint flex items-center justify-between">
+                    {feature.path ? (
+                      <span className="text-brand-400 font-semibold group-hover:translate-x-0.5 transition-transform">
+                        Open module &rarr;
+                      </span>
+                    ) : (
+                      'Not implemented'
+                    )}
+                  </span>
+                </Component>
+              </Reveal>
+            )
+          })}
         </ul>
       </section>
 

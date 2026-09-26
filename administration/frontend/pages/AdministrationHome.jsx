@@ -2,12 +2,12 @@ import { CheckSquare, FileText, Inbox, Mail, Users, UsersRound } from 'lucide-re
 import ModulePlaceholder from '../../../shared-features/frontend/components/ModulePlaceholder.jsx'
 
 const FEATURES = [
-  { icon: FileText, name: 'Forms', hint: 'Dynamic recruitment and registration forms.' },
-  { icon: Inbox, name: 'Applications', hint: 'Submission review with status history.' },
-  { icon: UsersRound, name: 'Executive Panels', hint: 'Panel terms, positions and teams.' },
-  { icon: Users, name: 'Members', hint: 'Official membership and panel history.' },
-  { icon: Mail, name: 'Bulk Email', hint: 'Campaigns with per-recipient tracking.' },
-  { icon: CheckSquare, name: 'Tasks', hint: 'Assignment, submission versions and review.' },
+  { icon: FileText, name: 'Forms', hint: 'Dynamic recruitment and registration forms.', path: '/administration/forms' },
+  { icon: Inbox, name: 'Applications', hint: 'Submission review with status history.', path: '/administration/applications' },
+  { icon: UsersRound, name: 'Executive Panels', hint: 'Panel terms, positions and teams.', path: '/administration/panels' },
+  { icon: Users, name: 'Members', hint: 'Official membership and panel history.', path: '/administration/members' },
+  { icon: Mail, name: 'Bulk Email', hint: 'Campaigns with per-recipient tracking.', path: '/administration/bulk-email' },
+  { icon: CheckSquare, name: 'Tasks', hint: 'Assignment, submission versions and review.', path: '/administration/tasks' },
 ]
 
 function AdministrationHome() {
