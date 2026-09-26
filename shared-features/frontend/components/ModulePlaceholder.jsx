@@ -1,4 +1,5 @@
 import { Compass } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import Badge from './Badge.jsx'
 import Reveal from './Reveal.jsx'
 
@@ -49,9 +50,24 @@ function ModulePlaceholder({ eyebrow, title, lead, status, features = [], source
               </span>
               <h3 className="text-[1.0625rem]">{feature.name}</h3>
               <p className="text-sm text-subtle">{feature.hint}</p>
-              <span className="mt-auto border-t border-edge-subtle pt-3 font-mono text-xs uppercase tracking-[0.1em] text-faint">
-                Not implemented
-              </span>
+              <div className="mt-auto flex items-center justify-between border-t border-edge-subtle pt-3">
+                <span
+                  className={`font-mono text-xs uppercase tracking-[0.1em] ${feature.statusVariant === 'success' || feature.implemented
+                      ? 'text-brand-400 font-medium'
+                      : 'text-faint'
+                    }`}
+                >
+                  {feature.status || 'Not implemented'}
+                </span>
+                {feature.to && (
+                  <Link
+                    to={feature.to}
+                    className="font-mono text-xs text-brand-300 transition hover:text-brand-400 hover:underline"
+                  >
+                    Open →
+                  </Link>
+                )}
+              </div>
             </Reveal>
           ))}
         </ul>

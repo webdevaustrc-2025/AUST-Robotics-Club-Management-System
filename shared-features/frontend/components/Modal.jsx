@@ -5,12 +5,12 @@ function Modal({ isOpen, title, onClose, children }) {
 
   return (
     <div
-      className="fixed inset-0 z-60 grid animate-fade-in place-items-center bg-black/60 p-4"
+      className="fixed inset-0 z-60 grid animate-fade-in motion-reduce:animate-none place-items-center bg-black/60 p-4"
       role="presentation"
       onClick={onClose}
     >
       <div
-        className="w-full max-w-lg animate-rise rounded-lg border border-edge bg-surface-2 shadow-lg"
+        className="w-full max-w-lg animate-rise motion-reduce:animate-none rounded-lg border border-edge bg-surface-2 shadow-lg"
         role="dialog"
         aria-modal="true"
         onClick={(event) => event.stopPropagation()}

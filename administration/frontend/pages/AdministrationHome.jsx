@@ -4,8 +4,24 @@ import ModulePlaceholder from '../../../shared-features/frontend/components/Modu
 const FEATURES = [
   { icon: FileText, name: 'Forms', hint: 'Dynamic recruitment and registration forms.' },
   { icon: Inbox, name: 'Applications', hint: 'Submission review with status history.' },
-  { icon: UsersRound, name: 'Executive Panels', hint: 'Panel terms, positions and teams.' },
-  { icon: Users, name: 'Members', hint: 'Official membership and panel history.' },
+  {
+    icon: UsersRound,
+    name: 'Executive Panels',
+    hint: 'Panel terms, positions and teams.',
+    status: 'Implemented',
+    statusVariant: 'success',
+    implemented: true,
+    to: '/administration/panels',
+  },
+  {
+    icon: Users,
+    name: 'Members',
+    hint: 'Official membership and panel history.',
+    status: 'Implemented',
+    statusVariant: 'success',
+    implemented: true,
+    to: '/administration/members',
+  },
   { icon: Mail, name: 'Bulk Email', hint: 'Campaigns with per-recipient tracking.' },
   { icon: CheckSquare, name: 'Tasks', hint: 'Assignment, submission versions and review.' },
 ]
