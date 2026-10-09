@@ -7,7 +7,13 @@ const FEATURES = [
   { icon: UsersRound, name: 'Executive Panels', hint: 'Panel terms, positions and teams.' },
   { icon: Users, name: 'Members', hint: 'Official membership and panel history.' },
   { icon: Mail, name: 'Bulk Email', hint: 'Campaigns with per-recipient tracking.' },
-  { icon: CheckSquare, name: 'Tasks', hint: 'Assignment, submission versions and review.' },
+  {
+    icon: CheckSquare,
+    name: 'Tasks',
+    hint: 'Assignment, submission versions and review.',
+    to: '/tasks',
+    status: 'Open Tasks',
+  },
 ]
 
 function AdministrationHome() {

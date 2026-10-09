@@ -47,7 +47,9 @@ function Button({
           aria-hidden="true"
         />
       )}
-      <span className={loading ? 'invisible' : undefined}>{children}</span>
+      <span className={`inline-flex items-center justify-center gap-2 ${loading ? 'invisible' : ''}`}>
+        {children}
+      </span>
     </>
   )
 

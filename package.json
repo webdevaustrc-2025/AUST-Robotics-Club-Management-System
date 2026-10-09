@@ -9,7 +9,11 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "server": "node server/server.js",
-    "server:dev": "nodemon server/server.js"
+    "server:dev": "nodemon server/server.js",
+    "test:admin-tasks": "node --env-file=.env.test --import ./administration/backend/tests/setup/guard.js --test \"administration/backend/tests/unit/**/*.test.js\" \"administration/backend/tests/integration/**/*.test.js\" \"administration/backend/tests/e2e/**/*.test.js\"",
+    "seed:admin-tasks": "node --env-file=.env.test ./administration/backend/tests/harness/seed.js",
+    "seed:admin-tasks:reset": "node --env-file=.env.test ./administration/backend/tests/harness/reset.js",
+    "dev:admin-tasks": "node --env-file=.env.test ./administration/backend/tests/harness/devServer.js"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
