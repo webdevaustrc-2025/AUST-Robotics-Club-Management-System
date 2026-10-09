@@ -1,4 +1,5 @@
-import { Compass } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { ArrowRight, Compass } from 'lucide-react'
 import Badge from './Badge.jsx'
 import Reveal from './Reveal.jsx'
 
@@ -34,26 +35,59 @@ function ModulePlaceholder({ eyebrow, title, lead, status, features = [], source
         </p>
 
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {features.map((feature, index) => (
-            <Reveal
-              as="li"
-              key={feature.name}
-              delay={index * 40}
-              className="flex flex-col gap-3 rounded-md border border-edge-subtle bg-surface-1 p-5 hover:border-edge hover:bg-surface-2"
-            >
-              <span
-                className="grid size-10 place-items-center rounded-sm bg-brand-500/10 text-brand-400"
-                aria-hidden="true"
+          {features.map((feature, index) => {
+            const isClickable = Boolean(feature.to)
+            const CardContent = (
+              <>
+                <span
+                  className={`grid size-10 place-items-center rounded-sm text-brand-400 ${
+                    isClickable ? 'bg-brand-500/15 text-brand-300' : 'bg-brand-500/10'
+                  }`}
+                  aria-hidden="true"
+                >
+                  <feature.icon size={20} strokeWidth={1.6} />
+                </span>
+                <h3 className="text-[1.0625rem] text-ink font-medium">{feature.name}</h3>
+                <p className="text-sm text-subtle">{feature.hint}</p>
+                {isClickable ? (
+                  <span className="mt-auto flex items-center justify-between border-t border-edge-subtle pt-3 font-mono text-xs uppercase tracking-[0.1em] text-brand-400 transition-colors group-hover:text-brand-300">
+                    <span>{feature.status || 'Active module'}</span>
+                    <ArrowRight size={14} className="transition-transform duration-fast group-hover:translate-x-1" aria-hidden="true" />
+                  </span>
+                ) : (
+                  <span className="mt-auto border-t border-edge-subtle pt-3 font-mono text-xs uppercase tracking-[0.1em] text-faint">
+                    Not implemented
+                  </span>
+                )}
+              </>
+            )
+
+            return (
+              <Reveal
+                as="li"
+                key={feature.name}
+                delay={index * 40}
+                className={`rounded-md border border-edge-subtle bg-surface-1 transition-all duration-base ease-standard ${
+                  isClickable
+                    ? 'hover:border-brand-500/40 hover:bg-surface-2 group'
+                    : 'hover:border-edge hover:bg-surface-2'
+                }`}
               >
-                <feature.icon size={20} strokeWidth={1.6} />
-              </span>
-              <h3 className="text-[1.0625rem]">{feature.name}</h3>
-              <p className="text-sm text-subtle">{feature.hint}</p>
-              <span className="mt-auto border-t border-edge-subtle pt-3 font-mono text-xs uppercase tracking-[0.1em] text-faint">
-                Not implemented
-              </span>
-            </Reveal>
-          ))}
+                {isClickable ? (
+                  <Link
+                    to={feature.to}
+                    className="flex h-full flex-col gap-3 p-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-0 rounded-md"
+                  >
+                    {CardContent}
+                  </Link>
+                ) : (
+                  <div className="flex h-full flex-col gap-3 p-5">
+                    {CardContent}
+                  </div>
+                )}
+              </Reveal>
+            )
+          })}
         </ul>
       </section>
 

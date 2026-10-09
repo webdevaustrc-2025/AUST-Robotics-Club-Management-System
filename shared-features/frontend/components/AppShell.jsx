@@ -61,7 +61,11 @@ function AppShell({ children }) {
     }
   }, [drawerOpen, isDesktop])
 
-  const activeItem = NAV_ITEMS.find((item) => location.pathname.startsWith(item.to))
+  const activeItem = NAV_ITEMS.find(
+    (item) =>
+      location.pathname.startsWith(item.to) ||
+      (item.to === '/administration' && location.pathname.startsWith('/tasks'))
+  )
   const sidebarOpen = isDesktop || drawerOpen
 
   function handleLogout() {
@@ -87,14 +91,22 @@ function AppShell({ children }) {
             Workspace
           </p>
           <ul className="flex flex-col gap-1">
-            {NAV_ITEMS.map(({ to, label, icon: Icon }) => (
-              <li key={to}>
-                <NavLink to={to} className={navItemClass}>
-                  <Icon size={19} strokeWidth={1.7} className="shrink-0" aria-hidden="true" />
-                  {label}
-                </NavLink>
-              </li>
-            ))}
+            {NAV_ITEMS.map(({ to, label, icon: Icon }) => {
+              const isMatch =
+                location.pathname.startsWith(to) ||
+                (to === '/administration' && location.pathname.startsWith('/tasks'))
+              return (
+                <li key={to}>
+                  <NavLink
+                    to={to}
+                    className={({ isActive }) => navItemClass({ isActive: isActive || isMatch })}
+                  >
+                    <Icon size={19} strokeWidth={1.7} className="shrink-0" aria-hidden="true" />
+                    {label}
+                  </NavLink>
+                </li>
+              )
+            })}
           </ul>
         </nav>
 

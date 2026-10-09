@@ -14,6 +14,7 @@ const administrationRoutes = [
   <Route key="administration-panels" path="administration/panels" element={<PanelManagement />} />,
   <Route key="administration-members" path="administration/members" element={<MemberManagement />} />,
   <Route key="administration-tasks" path="administration/tasks" element={<TaskManagement />} />,
+  <Route key="tasks" path="tasks" element={<TaskManagement />} />,
   <Route key="administration-bulk-email" path="administration/bulk-email" element={<BulkEmail />} />,
 ]
 
